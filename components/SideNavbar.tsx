@@ -4,8 +4,6 @@
 import { useState } from "react";
 import { Nav } from "./ui/nav";
 
-type Props = {};
-
 import {
   ShoppingCart,
   LayoutDashboard,
@@ -17,7 +15,7 @@ import { Button } from "./ui/button";
 
 import { useWindowWidth } from "@react-hook/window-size";
 
-export default function SideNavbar({}: Props) {
+export default function SideNavbar() {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   const onlyWidth = useWindowWidth();

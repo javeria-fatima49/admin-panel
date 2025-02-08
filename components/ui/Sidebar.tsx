@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Home, Package, ShoppingCart, Users, BarChart } from "lucide-react"
+import { Home, Package, ShoppingCart, BarChart } from "lucide-react"
 import type React from "react" // Added import for React
 
 const SidebarItem = ({ href, children }: { href: string; children: React.ReactNode }) => (
