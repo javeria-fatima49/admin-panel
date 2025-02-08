@@ -52,7 +52,6 @@
 
 
 
-
 "use client";
 
 import { DataTable } from "@/components/DataTable";
@@ -61,11 +60,11 @@ import React from "react";
 import PageTitle from "@/components/PageTitle";
 
 interface Setting {
-  category: string;
+  category: "Account" | "Notifications" | "Language" | "Theme";
   value: string | number | boolean;
 }
 
-const columns: ColumnDef<Setting, unknown>[] = [
+const columns: ColumnDef<Setting, string | number | boolean>[] = [
   {
     accessorKey: "category",
     header: "Category"

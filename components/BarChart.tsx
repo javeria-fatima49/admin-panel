@@ -1,73 +1,139 @@
+// /** @format */
+// "use client";
+// import React from "react";
+// import {
+//   BarChart as BarGraph,
+//   ResponsiveContainer,
+//   XAxis,
+//   YAxis,
+//   Bar
+// } from "recharts";
+
+
+
+// const data = [
+//   {
+//     name: "Jan",
+//     total: Math.floor(Math.random() * 5000) + 1000
+//   },
+//   {
+//     name: "Feb",
+//     total: Math.floor(Math.random() * 5000) + 1000
+//   },
+//   {
+//     name: "Mar",
+//     total: Math.floor(Math.random() * 5000) + 1000
+//   },
+//   {
+//     name: "Apr",
+//     total: Math.floor(Math.random() * 5000) + 1000
+//   },
+//   {
+//     name: "May",
+//     total: Math.floor(Math.random() * 5000) + 1000
+//   },
+//   {
+//     name: "Jun",
+//     total: Math.floor(Math.random() * 5000) + 1000
+//   },
+//   {
+//     name: "Jul",
+//     total: Math.floor(Math.random() * 5000) + 1000
+//   },
+//   {
+//     name: "Aug",
+//     total: Math.floor(Math.random() * 5000) + 1000
+//   },
+//   {
+//     name: "Sep",
+//     total: Math.floor(Math.random() * 5000) + 1000
+//   },
+//   {
+//     name: "Oct",
+//     total: Math.floor(Math.random() * 5000) + 1000
+//   },
+//   {
+//     name: "Nov",
+//     total: Math.floor(Math.random() * 5000) + 1000
+//   },
+//   {
+//     name: "Dec",
+//     total: Math.floor(Math.random() * 5000) + 1000
+//   }
+// ];
+
+// export default function BarChart() {
+//   return (
+//     <ResponsiveContainer width={"100%"} height={350}>
+//       <BarGraph data={data}>
+//         <XAxis
+//           dataKey={"name"}
+//           tickLine={false}
+//           axisLine={false}
+//           stroke="#888888"
+//           fontSize={12}
+//         />
+//         <YAxis
+//           tickLine={false}
+//           axisLine={false}
+//           stroke="#888888"
+//           fontSize={12}
+//           tickFormatter={(value) => `$${value}`}
+//         />
+//         <Bar dataKey={"total"} radius={[4, 4, 0, 0]} />
+//       </BarGraph>
+//     </ResponsiveContainer>
+//   );
+// }
+
+
+
+
+
+
 /** @format */
 "use client";
+
 import React from "react";
 import {
   BarChart as BarGraph,
   ResponsiveContainer,
   XAxis,
   YAxis,
-  Bar
+  Bar,
 } from "recharts";
 
+// Define the type for the data array
+interface MonthlyData {
+  name: string;
+  total: number;
+}
 
-
-const data = [
-  {
-    name: "Jan",
-    total: Math.floor(Math.random() * 5000) + 1000
-  },
-  {
-    name: "Feb",
-    total: Math.floor(Math.random() * 5000) + 1000
-  },
-  {
-    name: "Mar",
-    total: Math.floor(Math.random() * 5000) + 1000
-  },
-  {
-    name: "Apr",
-    total: Math.floor(Math.random() * 5000) + 1000
-  },
-  {
-    name: "May",
-    total: Math.floor(Math.random() * 5000) + 1000
-  },
-  {
-    name: "Jun",
-    total: Math.floor(Math.random() * 5000) + 1000
-  },
-  {
-    name: "Jul",
-    total: Math.floor(Math.random() * 5000) + 1000
-  },
-  {
-    name: "Aug",
-    total: Math.floor(Math.random() * 5000) + 1000
-  },
-  {
-    name: "Sep",
-    total: Math.floor(Math.random() * 5000) + 1000
-  },
-  {
-    name: "Oct",
-    total: Math.floor(Math.random() * 5000) + 1000
-  },
-  {
-    name: "Nov",
-    total: Math.floor(Math.random() * 5000) + 1000
-  },
-  {
-    name: "Dec",
-    total: Math.floor(Math.random() * 5000) + 1000
-  }
+// Generate random data for the chart
+const data: MonthlyData[] = [
+  { name: "Jan", total: Math.floor(Math.random() * 5000) + 1000 },
+  { name: "Feb", total: Math.floor(Math.random() * 5000) + 1000 },
+  { name: "Mar", total: Math.floor(Math.random() * 5000) + 1000 },
+  { name: "Apr", total: Math.floor(Math.random() * 5000) + 1000 },
+  { name: "May", total: Math.floor(Math.random() * 5000) + 1000 },
+  { name: "Jun", total: Math.floor(Math.random() * 5000) + 1000 },
+  { name: "Jul", total: Math.floor(Math.random() * 5000) + 1000 },
+  { name: "Aug", total: Math.floor(Math.random() * 5000) + 1000 },
+  { name: "Sep", total: Math.floor(Math.random() * 5000) + 1000 },
+  { name: "Oct", total: Math.floor(Math.random() * 5000) + 1000 },
+  { name: "Nov", total: Math.floor(Math.random() * 5000) + 1000 },
+  { name: "Dec", total: Math.floor(Math.random() * 5000) + 1000 },
 ];
 
 export default function BarChart() {
   return (
-    <ResponsiveContainer width={"100%"} height={350}>
-      <BarGraph data={data}>
+    <ResponsiveContainer width="100%" height={350}>
+      <BarGraph
+        data={data}
+        aria-label="Monthly sales bar chart" // Accessibility improvement
+      >
         <XAxis
-          dataKey={"name"}
+          dataKey="name"
           tickLine={false}
           axisLine={false}
           stroke="#888888"
@@ -80,7 +146,11 @@ export default function BarChart() {
           fontSize={12}
           tickFormatter={(value) => `$${value}`}
         />
-        <Bar dataKey={"total"} radius={[4, 4, 0, 0]} />
+        <Bar
+          dataKey="total"
+          radius={[4, 4, 0, 0]}
+          fill="#8884d8" // Add a fill color for better visibility
+        />
       </BarGraph>
     </ResponsiveContainer>
   );
