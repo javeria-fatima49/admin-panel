@@ -1,13 +1,26 @@
 import { client } from "../sanity/lib/client"
-// import DashboardLayout from "../components/layout"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
-async function fetchDashboardData() {
-  const users = await client.fetch(`*[_type == "order"]`)
+// 1️⃣ Proper Order Interface Define Karain
+interface Order {
+  _id: string
+  orders: number
+  totalSpent: number
+}
+
+// 2️⃣ Function ke andar Types ka Use Karen
+async function fetchDashboardData(): Promise<{
+  totalRevenue: number
+  totalOrders: number
+  totalCustomers: number
+  conversionRate: number
+}> {
+  const users: Order[] = await client.fetch(`*[_type == "order"]`)
+
   const totalCustomers = users.length
-  const totalOrders = users.reduce((sum: any, user: { orders: any }) => sum + (user.orders || 0), 0)
-  const totalRevenue = users.reduce((sum: any, user: { totalSpent: any }) => sum + (user.totalSpent || 0), 0)
-  const conversionRate = (totalOrders / totalCustomers) * 100
+  const totalOrders = users.reduce((sum, user) => sum + (user.orders || 0), 0)
+  const totalRevenue = users.reduce((sum, user) => sum + (user.totalSpent || 0), 0)
+  const conversionRate = totalCustomers > 0 ? (totalOrders / totalCustomers) * 100 : 0
 
   return {
     totalRevenue,
@@ -22,7 +35,6 @@ export default async function DashboardPage() {
 
   return (
     <div>
-    {/* // <DashboardLayout> */}
       <h1 className="text-2xl font-semibold mb-4">E-commerce Dashboard</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <Card>
@@ -58,6 +70,6 @@ export default async function DashboardPage() {
           </CardContent>
         </Card>
       </div>
-      </div>
+    </div>
   )
 }

@@ -6,7 +6,7 @@ import React from "react";
 import PageTitle from "@/components/PageTitle";
 // import { cn } from "@/lib/utils";
 
-type Props = {};
+// type Props = {};
 
 interface Setting {
   category: string;
@@ -42,7 +42,7 @@ const data: Setting[] = [
   }
 ];
 
-export default function SettingsPage({}: Props) {
+export default function SettingsPage() {
   return (
     <div className="flex flex-col gap-5  w-full">
       <PageTitle title="Settings" />
