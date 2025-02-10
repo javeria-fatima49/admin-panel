@@ -253,9 +253,9 @@
 
 import mongoose from "mongoose"
 
-const MONGO_URI = process.env.MONGO_URI
+const MONGODB_URI = process.env.MONGODB_URI
 
-if (!MONGO_URI) {
+if (!MONGODB_URI) {
   throw new Error("Please define the MONGODB_URI environment variable inside .env.local")
 }
 
@@ -290,7 +290,7 @@ export async function connectDB() {
 
     console.log("Creating new MongoDB connection")
     cached!.promise = mongoose
-      .connect(MONGO_URI!, opts)
+      .connect(MONGODB_URI!, opts)
       .then((mongoose) => {
         console.log("MongoDB connected successfully")
         return mongoose
